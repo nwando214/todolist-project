@@ -3,7 +3,7 @@ const todoInput= document.getElementById('todoInput');
             const addTodoBtn = document.getElementById('addTodoBtn');
             const output = document.getElementById('output');
 
-            const todoList= [
+            const todoList= JSON.parse(localStorage.getItem("todolist")) || [
                 {
                 todo: 'wash dishes',
                 dueDate: '23-14-2024'
@@ -18,6 +18,7 @@ const todoInput= document.getElementById('todoInput');
                 todo:todoInput.value,
                 dueDate: dateInput.value
              })
+                localStorage.setItem("todolist",JSON.stringify(todoList))
                 console.log(todoList);  
                 todoInput.value= "";
                 dateInput.value= "";
@@ -36,6 +37,7 @@ const todoInput= document.getElementById('todoInput');
             </p>
             <button class="delbtn" onclick="
                 todoList.splice(${index}, 1);
+                localStorage.setItem('todolist', JSON.stringify(todoList))
                 displayTodo();
                 ">Delete</button>
             </div>
